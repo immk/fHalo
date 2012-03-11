@@ -37,13 +37,8 @@ public class Example {
 //		System.out.println("Comments : " + bLike);
 		
 		
-/*		Feed feed = new Feed();
-		feed.setMessage("hello");
-		feed.setLink("http://www.facebook.com");
-		feed.setPicture("http://220.67.124.66/me.jpg");
-		feed.setDescription("硫띿땐��);
-		FacebookType type = user.publishFeed("100002274717846", feed);
-		System.out.println("FEED : " + type.getId());
+/*		
+
 		
 		Comments comments = new Comments();
 		comments.setMessage("�뚯뒪�명듃�명듃");
