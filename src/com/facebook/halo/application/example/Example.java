@@ -1,10 +1,20 @@
 package com.facebook.halo.application.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.facebook.halo.application.handler.Delete;
+import com.facebook.halo.application.handler.Search;
+import com.facebook.halo.application.types.Album;
+import com.facebook.halo.application.types.Checkin.Place;
+import com.facebook.halo.application.types.Event;
 import com.facebook.halo.application.types.User;
+import com.facebook.halo.application.types.connection.Checkins;
 import com.facebook.halo.application.types.connection.Feed;
 import com.facebook.halo.application.types.connection.Friends;
+import com.facebook.halo.application.types.connection.Photos;
+import com.facebook.halo.application.types.infra.FacebookType;
+import com.facebook.halo.framework.annotation.Facebook;
 import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.core.Connection;
 
@@ -20,6 +30,7 @@ public class Example {
 		//create instance of me
 		user = user.createInstance("me");
 		
+		//test method
 		getMyFeeds();
 		getMyFriends();
 		getMyInfo();
@@ -98,6 +109,128 @@ public class Example {
 				}
 		
 		user.publishFeed(targetUserId, feed);
+	}
+	
+	
+	public static void deleteObject() {
+		
+		Feed feed = new Feed();
+		feed.setMessage("Hello World ~ ");
+		feed.setLink("http://www.facebook.com");
+		feed.setDescription("Test Code");
+		FacebookType type = user.publishFeed("me", feed);
+		String feedId = type.getId();
+		System.out.println("FEED ID : " + feedId);
+
+		Delete delete = new Delete();
+		boolean isDelete = delete.delete(feedId);
+		System.out.println(isDelete);
+	}
+	
+	public static void deleteObjectByType() {
+		
+		Feed feed = new Feed();
+		feed.setMessage("Hello World ~ ");
+		feed.setLink("http://www.facebook.com");
+		feed.setDescription("Test Code");
+		FacebookType type = user.publishFeed("me", feed);
+		String feedId = type.getId();
+		System.out.println("FEED ID : " + feedId);
+		
+		boolean isDelete = user.delete(feedId);
+		System.out.println(isDelete);
+	}
+	
+	public static void searchObject() {
+		
+
+		Search search = new Search();
+		Connection<Event> events = search.search("name, location","conference", "event", Event.class);
+		
+		for (List<Event> eventList : events)
+			for (Event event : eventList) 
+				System.out.println("Event Name : " + event.getName() + " / Location : " + event.getLocation());
+	}
+	
+	public static void searchPlaceObject() {
+		
+//		Places: https://graph.facebook.com/search?q=coffee&type=place&center=37.76,122.427&distance=1000
+		Search search = new Search();			
+		Connection<Place> places = search.searchPlace(null, "coffee", "37.76", "122.427", 1000);
+		for (List<Place> placeList : places)
+			for (Place place : placeList) 
+				System.out.println("Place Name : " + place.getName() + " / Location : " + place.getLocation().getCountry() +", " + place.getLocation().getCity() + " / " );
+
+	}
+	
+	public static void searchObjectByFql() {
+		
+		String query = "SELECT uid2 FROM friend WHERE uid1 = me()";
+		Search search = new Search();
+		List<FriendTable> users = search.search(query, FriendTable.class);
+
+		for (FriendTable friend : users) {
+			String friendId = friend.getUid2();
+			
+			User friendUser = new User();
+			friendUser = friendUser.createInstance(friendId);
+			System.out.println("Freind ID : " + friendId);
+			System.out.println("Friend Name : " + friendUser.getName() + " / Gender : " + friendUser.getGender() + " / Locale : " + friendUser.getLocale());
+		}
+	}
+	
+	public static class FriendTable {
+		
+		@Facebook
+		private String uid1;
+		@Facebook
+		private String uid2;
+		
+		public String getUid1() {
+			return uid1;
+		}
+		
+		public String getUid2() {
+			return uid2;
+		}
+	}
+	
+	public static void uploadPhoto() {
+		
+		String albumId = null ;
+		Connection<Album> albums = user.albums();
+		for(List<Album> albumList : albums)
+			for(Album album : albumList){
+				
+				System.out.println("Album ID : " + album.getId());
+				if(album.getName().equals("유리방")) {
+					albumId = album.getId();
+					break;
+				}
+			}
+				
+		System.out.println("Select Album : " + albumId);
+		
+		Photos photos = new Photos();
+		photos.setMessage("Upload Photo Test");
+		photos.setSource("C:\\FacebookHalo\\sample_photo.JPG");
+		photos.setFileName("Sample Photo");
+		FacebookType type = user.publishPhotos(albumId, photos);
+		System.out.println("Photos : " + type.getId());
+	}
+	
+	public static void checkIn(){
+		
+		Checkins checkins= new Checkins();
+		checkins.setMessage("Where R U ?");
+		List<String> tags = new ArrayList<String>();
+		tags.add("100002274717846");	// Friend1 Id
+		tags.add("100001066448386");	// Friend2 Id
+		checkins.setTags(tags);
+		checkins.setCoordinates("36.436406", "128.024883");	// My Position
+		checkins.setPlace("228600137193828");				// Place Position
+		FacebookType type = user.publishCheckins(checkins);
+		System.out.println("Checkins : " + type.getId());
 	}
 	
 }

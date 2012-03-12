@@ -30,8 +30,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.facebook.halo.framework.type.infra.CategorizedFacebookType;
-import com.facebook.halo.framework.type.infra.NamedFacebookType;
+import com.facebook.halo.application.types.infra.CategorizedFacebookType;
+import com.facebook.halo.application.types.infra.NamedFacebookType;
 import com.facebook.halo.framework.annotation.Facebook;
 import com.facebook.halo.framework.formatter.ReflectionUtils;
 /**
@@ -106,7 +106,7 @@ public class Post extends NamedFacebookType {
   private Comments comments;
 
   @Facebook
-  private Place place;
+  private PostPlace place;
 
   @Facebook
   private List<NamedFacebookType> to = new ArrayList<NamedFacebookType>();
@@ -127,7 +127,7 @@ public class Post extends NamedFacebookType {
    * @author <a href="http://restfb.com">Mark Allen</a>
    * @since 1.6.8
    */
-  public static class Place extends NamedFacebookType {
+  public static class PostPlace extends NamedFacebookType {
     @Facebook
     private Location location;
 
@@ -667,7 +667,7 @@ public class Post extends NamedFacebookType {
    * @return The place where this post occurred.
    * @since 1.6.8
    */
-  public Place getPlace() {
+  public PostPlace getPlace() {
     return place;
   }
 

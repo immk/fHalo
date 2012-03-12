@@ -29,27 +29,23 @@ import static com.facebook.halo.framework.formatter.StringUtils.isBlank;
 import static com.facebook.halo.framework.formatter.StringUtils.trimToEmpty;
 import static com.facebook.halo.framework.json.JsonObject.NULL;
 import static java.util.Collections.unmodifiableList;
-import static java.util.Collections.unmodifiableSet;
 import static java.util.logging.Level.FINE;
 import static java.util.logging.Level.FINER;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.facebook.halo.application.types.Post.Comments;
 import com.facebook.halo.framework.annotation.Facebook;
 import com.facebook.halo.framework.exception.FacebookJsonMappingException;
 import com.facebook.halo.framework.exception.JsonException;
 import com.facebook.halo.framework.formatter.ReflectionUtils.FieldWithAnnotation;
-import com.facebook.halo.framework.type.Post.Comments;
 
 /**
  * Default implementation of a JSON-to-Java mapper.
@@ -601,17 +597,17 @@ public class DefaultJsonMapper extends BaseJsonMapper implements JsonMapper {
 
     // Hack for issue 76 where FB will sometimes return a Post's Comments as
     // "[]" instead of an object type (wtf)
-    if (Comments.class.isAssignableFrom(type) && rawValue instanceof JsonArray) {
-      if (logger.isLoggable(FINE))
-        logger.fine("Encountered comment array '" + rawValueAsString + "' but expected a "
-            + Comments.class.getSimpleName() + " object instead.  Working around that " + "by coercing into an empty "
-            + Comments.class.getSimpleName() + " instance...");
-
-      JsonObject workaroundJsonObject = new JsonObject();
-      workaroundJsonObject.put("count", 0);
-      workaroundJsonObject.put("data", new JsonArray());
-      rawValueAsString = workaroundJsonObject.toString();
-    }
+//    if (Comments.class.isAssignableFrom(type) && rawValue instanceof JsonArray) {
+//      if (logger.isLoggable(FINE))
+//        logger.fine("Encountered comment array '" + rawValueAsString + "' but expected a "
+//            + Comments.class.getSimpleName() + " object instead.  Working around that " + "by coercing into an empty "
+//            + Comments.class.getSimpleName() + " instance...");
+//
+//      JsonObject workaroundJsonObject = new JsonObject();
+//      workaroundJsonObject.put("count", 0);
+//      workaroundJsonObject.put("data", new JsonArray());
+//      rawValueAsString = workaroundJsonObject.toString();
+//    }
 
     // Some other type - recurse into it
     return toJavaObject(rawValueAsString, type);

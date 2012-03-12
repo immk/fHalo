@@ -3,7 +3,7 @@ package com.facebook.halo.application.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.facebook.halo.application.types.Post.Place;
+import com.facebook.halo.application.types.Checkin.Place;
 import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.common.Parameter;
 import com.facebook.halo.framework.core.Connection;

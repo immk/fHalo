@@ -22,12 +22,12 @@
 
 package com.facebook.halo.application.types;
 
-import java.util.Date;
-
 import static com.facebook.halo.framework.formatter.DateUtils.toDateFromLongFormat;
 
-import com.facebook.halo.framework.type.infra.FacebookType;
-import com.facebook.halo.framework.type.infra.NamedFacebookType;
+import java.util.Date;
+
+import com.facebook.halo.application.types.infra.FacebookType;
+import com.facebook.halo.application.types.infra.NamedFacebookType;
 import com.facebook.halo.framework.annotation.Facebook;
 
 /**
