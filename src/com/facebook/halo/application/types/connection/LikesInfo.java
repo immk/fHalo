@@ -1,9 +1,9 @@
 package com.facebook.halo.application.types.connection;
 
-import static com.facebook.halo.framework.formatter.DateUtils.toDateFromLongFormat;
-
 import java.util.Date;
+
 import com.facebook.halo.application.types.infra.CategorizedFacebookType;
+import static com.facebook.halo.framework.formatter.DateUtils.toDateFromLongFormat;
 
 /**
  * User Object Connection type
