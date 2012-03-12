@@ -48,7 +48,7 @@ import com.facebook.halo.application.types.connection.Photos;
 import com.facebook.halo.application.types.infra.FacebookType;
 import com.facebook.halo.application.types.infra.NamedFacebookType;
 import com.facebook.halo.framework.annotation.Facebook;
-import com.facebook.halo.framework.annotation.SessionStore;
+import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.common.Arguments;
 import com.facebook.halo.framework.common.BinaryAttachment;
 import com.facebook.halo.framework.common.Parameter;
@@ -486,7 +486,7 @@ public class User extends NamedFacebookType implements UserInterface {
 	 * constructor
 	 */
 	public User() {
-		facebookClient = new DefaultFacebookClient(SessionStore.getAccessToken());
+		facebookClient = new DefaultFacebookClient(AccessToken.getAccessToken());
 	}
 
 	/**

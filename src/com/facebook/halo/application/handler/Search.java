@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.facebook.halo.application.types.Post.Place;
-import com.facebook.halo.framework.annotation.SessionStore;
+import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.common.Parameter;
 import com.facebook.halo.framework.core.Connection;
 import com.facebook.halo.framework.core.DefaultFacebookClient;
@@ -19,7 +19,7 @@ public class Search {
 	FacebookClient facebookClient;
 	
 	public Search(){
-		facebookClient = new DefaultFacebookClient(SessionStore.getAccessToken());
+		facebookClient = new DefaultFacebookClient(AccessToken.getAccessToken());
 	}
 	
 /*	public <T> List<T> search(FQL fql, Class<T> objectType) {

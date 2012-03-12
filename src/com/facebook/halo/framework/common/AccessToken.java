@@ -18,7 +18,7 @@ import com.facebook.halo.framework.formatter.ReflectionUtils;
 public class AccessToken {
 	
 	@Facebook("access_token")
-	private String accessToken;
+	private static String accessToken;
 
 	@Facebook
 	private Long expires;
@@ -51,8 +51,15 @@ public class AccessToken {
      * The access token's value.
      * @return The access token's value.
      */
-	public String getAccessToken() {
+	public static String getAccessToken() {
 		return accessToken;
+	}
+	
+	/**
+     * set access token's value.
+     */
+	public static void setAccessToken(String token) {
+		AccessToken.accessToken = token;
 	}
 	
     /**

@@ -1,6 +1,6 @@
 package com.facebook.halo.application.handler;
 
-import com.facebook.halo.framework.annotation.SessionStore;
+import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.core.DefaultFacebookClient;
 import com.facebook.halo.framework.core.FacebookClient;
 
@@ -13,7 +13,7 @@ public class Delete {
 	FacebookClient facebookClient;
 	
 	public Delete(){
-		facebookClient = new DefaultFacebookClient(SessionStore.getAccessToken());
+		facebookClient = new DefaultFacebookClient(AccessToken.getAccessToken());
 	}
 	
 	public boolean delete(String objectId) {

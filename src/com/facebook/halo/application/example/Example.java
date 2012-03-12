@@ -5,12 +5,9 @@ import java.util.List;
 import com.facebook.halo.application.handler.Search;
 import com.facebook.halo.application.types.Comment;
 import com.facebook.halo.application.types.Event;
-import com.facebook.halo.application.types.Post;
 import com.facebook.halo.application.types.Post.Place;
 import com.facebook.halo.application.types.User;
-import com.facebook.halo.application.types.connection.Feed;
-import com.facebook.halo.application.types.infra.FacebookType;
-import com.facebook.halo.framework.annotation.SessionStore;
+import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.core.Connection;
 
 public class Example {
@@ -19,7 +16,7 @@ public class Example {
 //		msg = msg.createInstance("327730333904284_310");
 //		System.out.println(msg.getCreatedTime());
 		
-		SessionStore.setAccessToken("AAAEmINgtKV8BALF5VAkJwa6t8zufPju2YOSWZBPZA5ZBH3btTbKBm44sl1lBAlJZCQHlzHdaon6DGMr3e35qvqT4wJvNfdyZCF1ulWnUAtAZDZD");
+		AccessToken.setAccessToken("AAAEmINgtKV8BALF5VAkJwa6t8zufPju2YOSWZBPZA5ZBH3btTbKBm44sl1lBAlJZCQHlzHdaon6DGMr3e35qvqT4wJvNfdyZCF1ulWnUAtAZDZD");
 		User user = new User();
 		user = user.createInstance("me"); 
 		System.out.println(user.getFirstName());

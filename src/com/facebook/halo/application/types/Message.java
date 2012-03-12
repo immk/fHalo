@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.facebook.halo.application.types.infra.NamedFacebookType;
 import com.facebook.halo.framework.annotation.Facebook;
-import com.facebook.halo.framework.annotation.SessionStore;
+import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.core.DefaultFacebookClient;
 import com.facebook.halo.framework.core.FacebookClient;
 
@@ -36,7 +36,7 @@ public class Message {
 	private FacebookClient facebookClient;
 	
 	public Message() {
-		facebookClient = new DefaultFacebookClient(SessionStore.getAccessToken());
+		facebookClient = new DefaultFacebookClient(AccessToken.getAccessToken());
 	}
 	
 	public final String getId() {
