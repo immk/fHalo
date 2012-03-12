@@ -6,7 +6,7 @@ package com.facebook.halo.framework.common;
 public class Arguments {
 	
 	/**
-	 *  feed Table
+	 *  feed Tables
 	 */
 	public class FEED {
 		public final static String MESSAGE = "message";
@@ -19,14 +19,14 @@ public class Arguments {
 	}
 	
 	/**
-	 *  comments Table
+	 *  comments Tables
 	 */
 	public class COMMENTS {
 		public final static String MESSAGE = "message";
 	}
 	
 	/**
-	 *  links Table
+	 *  links Tables
 	 */
 	public class LINKS {
 		public final static String LINK = "link";
@@ -39,7 +39,7 @@ public class Arguments {
 	}
 	
 	/**
-	 *  albums Table
+	 *  albums Tables
 	 */
 	public class ALBUMS{
 		public final static String NAME = "name";
@@ -55,7 +55,7 @@ public class Arguments {
 	}
 	
 	/**
-	 *  checkin Table
+	 *  checkin Tables
 	 */
 	public class CHECKIN {
 		public final static String MESSAGE = "message";
