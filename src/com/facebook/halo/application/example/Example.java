@@ -13,10 +13,11 @@ import com.facebook.halo.application.types.connection.Checkins;
 import com.facebook.halo.application.types.connection.Feed;
 import com.facebook.halo.application.types.connection.Friends;
 import com.facebook.halo.application.types.connection.Photos;
+import com.facebook.halo.application.types.fqlTable.FriendTable;
 import com.facebook.halo.application.types.infra.FacebookType;
-import com.facebook.halo.framework.annotation.Facebook;
 import com.facebook.halo.framework.common.AccessToken;
 import com.facebook.halo.framework.core.Connection;
+import com.facebook.halo.framework.core.DefaultFacebookClient;
 
 
 public class Example {
@@ -37,7 +38,7 @@ public class Example {
 		publishFeed();
 		likeObject();
 	}
-	
+		
 	/**
 	 * like specific object(photo, feed ..)
 	 * like feed contains "test" string in my timeline.
@@ -178,22 +179,7 @@ public class Example {
 			System.out.println("Friend Name : " + friendUser.getName() + " / Gender : " + friendUser.getGender() + " / Locale : " + friendUser.getLocale());
 		}
 	}
-	
-	public static class FriendTable {
-		
-		@Facebook
-		private String uid1;
-		@Facebook
-		private String uid2;
-		
-		public String getUid1() {
-			return uid1;
-		}
-		
-		public String getUid2() {
-			return uid2;
-		}
-	}
+
 	
 	public static void uploadPhoto() {
 		
